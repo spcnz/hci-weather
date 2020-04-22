@@ -1,8 +1,19 @@
 import React from "react";
 
-export default function Home() {
+import Header from './Header'
+import Dashboard from './Dashboard'
+import SideBar from './SideBar'
 
-    return (
-        <div>Home page</div>
-    )
+class Home extends React.PureComponent {
+    render() {
+        return (
+            <div>
+                <Header />
+                <SideBar />
+                <Dashboard />
+            </div>
+        )
+    }
 }
+
+export default Home;
