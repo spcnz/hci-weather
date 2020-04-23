@@ -59,7 +59,7 @@ export default function SideBar(props) {
               <ListItem children key={text}>
                 <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                 <ListItemText primary={text} />
-                <Input></Input>
+                <Input ></Input>
               </ListItem>
             ))}
           </List>

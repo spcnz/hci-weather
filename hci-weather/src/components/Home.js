@@ -12,6 +12,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 import Dashboard from './Dashboard'
 import SideBar from './SideBar'
+import API from '../api'
+import config from '../config'
 
 const drawerWidth = 240;
 
@@ -69,7 +71,8 @@ export default function Home() {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(true);
-  
+    const [data, setData] = React.useState(null);
+
     const handleDrawerOpen = () => {
       setOpen(true);
     };
@@ -77,6 +80,15 @@ export default function Home() {
     const handleDrawerClose = () => {
       setOpen(false);
     };
+
+    const  call = async () => {
+      try {
+        const data = await API.get(`?q=London&APPID=${config.API_KEY}`)
+        console.log(data)
+      } catch(error){
+        console.log(error)
+      }
+    }
 
     return (
       <div className={classes.root}>
@@ -100,7 +112,7 @@ export default function Home() {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" noWrap>
+            <Typography variant="h6" noWrap onClick={()=> call()}>
               Weather app
             </Typography>
           </Toolbar>
