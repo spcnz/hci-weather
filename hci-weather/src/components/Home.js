@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import clsx from 'clsx';
 import { Helmet } from 'react-helmet'
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -15,7 +15,7 @@ import SideBar from './SideBar'
 import API from '../api'
 import config from '../config'
 
-const drawerWidth = 240;
+const drawerWidth = 300;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -69,9 +69,9 @@ const useStyles = makeStyles((theme) => ({
 export default function Home() {
 
     const classes = useStyles();
-    const theme = useTheme();
     const [open, setOpen] = React.useState(true);
-    const [data, setData] = React.useState(null);
+    const [data, setData] = React.useState({});
+    const [locations, setLocations] = React.useState([])
 
     const handleDrawerOpen = () => {
       setOpen(true);
@@ -81,15 +81,19 @@ export default function Home() {
       setOpen(false);
     };
 
-    const  call = async () => {
-      try {
-        const data = await API.get(`?q=London&APPID=${config.API_KEY}`)
-        console.log(data)
-      } catch(error){
-        console.log(error)
+    
+    useEffect( ()=> {
+      const  getForecast = async () => {
+        try {
+          const data = await API.get(`?q=London&APPID=${config.API_KEY}`)
+          setData(data)
+        } catch(error){
+          console.log(error)
+        }
       }
-    }
-
+      if (locations.length > 0)
+        getForecast()
+    })
     return (
       <div className={classes.root}>
       <Helmet>
@@ -112,7 +116,7 @@ export default function Home() {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" noWrap onClick={()=> call()}>
+            <Typography variant="h6" noWrap>
               Weather app
             </Typography>
           </Toolbar>
@@ -120,6 +124,7 @@ export default function Home() {
         <SideBar 
           open={open}
           handleDrawerClose={handleDrawerClose}
+          setLocations={setLocations}
         />
         <main
           className={clsx(classes.content, {
