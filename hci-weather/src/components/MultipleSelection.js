@@ -100,7 +100,7 @@ export default function MultipleSelection(props) {
         <TextField
           id="input-with-icon-textfield"
           {...params}
-          label="Search in google maps"
+          label="Choose cities"
           variant="outlined"
           fullWidth
           onChange={handleChange} 

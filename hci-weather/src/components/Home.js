@@ -71,7 +71,7 @@ export default function Home() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(true);
     const [data, setData] = React.useState({});
-    const [locations, setLocations] = React.useState([])
+    let locations = []
 
     const handleDrawerOpen = () => {
       setOpen(true);
@@ -81,7 +81,9 @@ export default function Home() {
       setOpen(false);
     };
 
-    
+    const setLocations = locationsArr => {
+      locations = locationsArr
+    }
     useEffect( ()=> {
       const  getForecast = async () => {
         try {

@@ -2,19 +2,19 @@ import React from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
-
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import DateRangeIcon from '@material-ui/icons/DateRange';
+import Button from '@material-ui/core/Button';
+import DoneIcon from '@material-ui/icons/Done';
+
 import MultipleSelection from './MultipleSelection'
+import DatePicker from './DatePicker'
 
 const drawerWidth = 300;
 
@@ -57,18 +57,36 @@ export default function SideBar(props) {
           </div>
           <Divider />
           <List>
-            <ListItem children key={Location}>
+            <ListItem children key="Location">
               <MultipleSelection setLocations={props.setLocations}/>
             </ListItem>
           </List>
           <List>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
+              <ListItem button key="StartDate">
+                <DatePicker label="Select start date"/>
               </ListItem>
-            ))}
+              <ListItem button key="EndDate">
+                <DatePicker label="Select end date"/>
+              </ListItem>
+              <ListItem>
+              <Button 
+                  variant="contained" 
+                  color="primary"
+                  size="large"
+                  onClick={() => props.getForecast()}
+                  startIcon={<DoneIcon />}
+                  style={{ 
+                    position: 'relative',
+                    top:20,
+                    right: 15,
+                    left: '30%'
+                    }}
+                  >
+                  Get forecast
+                </Button>
+                </ListItem>
           </List>
+          
         </Drawer>
     );
   }
