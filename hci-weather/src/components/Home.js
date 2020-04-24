@@ -7,6 +7,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import MenuIcon from '@material-ui/icons/Menu';
 
 
@@ -14,6 +15,7 @@ import Dashboard from './Dashboard'
 import SideBar from './SideBar'
 import API from '../api'
 import config from '../config'
+import image from "../assets/img/sky.jpg";
 
 const drawerWidth = 300;
 
@@ -25,7 +27,8 @@ const useStyles = makeStyles((theme) => ({
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
-    }),
+    }) ,
+    height: '25%'
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -34,6 +37,38 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
+  },
+  header: {
+    backgroundImage: '-webkit-linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url('+ image + ')' ,
+    backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url('+ image + ')',
+    backgroundSize: 'cover',
+    height: '21%',
+    backgroundPosition: 'center'
+  },
+  headerTitle: {
+    position: 'absolute',
+    textAlign: 'center',
+    width: '1140px',
+    left: '50%',
+    top: '80px',
+    webkitTransform: 'translate(-50%, -50%)',
+    msTransform: 'translate(-50%, -50%)',
+    transform: 'translate(-50%, -50%)',
+    fontWeight: '300',
+    textTransform: 'uppercase',
+    marginBottom: '20px',
+    color: '#fff',
+    fontSize: '240%',
+    wordSpacing: '4px',
+    letterSpacing: '1px'
+  },
+
+  textBox: {
+    position: 'absolute',
+    width: '1140px',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -106,9 +141,10 @@ export default function Home() {
             position="fixed"
             className={clsx(classes.appBar, {
                 [classes.appBarShift]: open,
-                })}
+                }, classes.header)}
+            
         >
-          <Toolbar>
+          <Toolbar variant="dense">
             <IconButton
               color="inherit"
               aria-label="open drawer"
@@ -118,9 +154,11 @@ export default function Home() {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" noWrap>
-              Weather app
+            <div clssName={classes.textBox}>
+            <Typography variant="h6" className={classes.headerTitle}>
+              Get weather forecast for five 5 days
             </Typography>
+            </div>
           </Toolbar>
         </AppBar>
         <SideBar 

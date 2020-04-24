@@ -3,7 +3,7 @@ import React from "react";
 
 class Dashboard extends React.PureComponent {
     render() {
-      return <h1>Dashboard</h1>;
+      return <h1>DADA</h1>
     }
   }
 
