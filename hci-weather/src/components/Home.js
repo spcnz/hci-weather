@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     width: '1140px',
     left: '50%',
-    top: '80px',
+    top: '50px',
     webkitTransform: 'translate(-50%, -50%)',
     msTransform: 'translate(-50%, -50%)',
     transform: 'translate(-50%, -50%)',
@@ -122,14 +122,13 @@ export default function Home() {
     useEffect( ()=> {
       const  getForecast = async () => {
         try {
-          const data = await API.get(`?q=London&APPID=${config.API_KEY}`)
-          setData(data)
+          const data = await API.get(`?q=NoviSad&APPID=${config.API_KEY}`)
         } catch(error){
           console.log(error)
         }
       }
-      if (locations.length > 0)
-        getForecast()
+      //getForecast()
+      console.log('da')
     })
     return (
       <div className={classes.root}>
@@ -154,7 +153,7 @@ export default function Home() {
             >
               <MenuIcon />
             </IconButton>
-            <div clssName={classes.textBox}>
+            <div className={classes.textBox}>
             <Typography variant="h6" className={classes.headerTitle}>
               Get weather forecast for five 5 days
             </Typography>
