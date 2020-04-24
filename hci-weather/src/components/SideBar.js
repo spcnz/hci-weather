@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: drawerWidth,
+    backgroundColor: '#F5F5F5'
   },
   drawerHeader: {
     display: 'flex',
@@ -33,7 +34,12 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(0, 1),
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
-  }
+  },
+  textBox: {
+    fontWeight: '300',
+    textTransform: 'uppercase',
+    color: 'black'
+  },
 }));
 export default function SideBar(props) {
     const classes = useStyles();
@@ -50,8 +56,8 @@ export default function SideBar(props) {
           }}
         >
           <div className={classes.drawerHeader}>
-          <Typography variant="h6" component="h2">Location and date</Typography>
-            <IconButton onClick={props.handleDrawerClose}>
+          <Typography variant="h6" component="h2" className={classes.textBox}>Location and date</Typography>
+            <IconButton onClick={props.handleDrawerClose} >
               {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
             </IconButton>
           </div>
