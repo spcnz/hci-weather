@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -9,7 +9,7 @@ import SimpleTable from './SimpleTable'
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    marginTop: '20px'
+    marginTop: '1px'
   },
   paper: {
     padding: theme.spacing(2),
@@ -36,24 +36,20 @@ export default function Dashboard(props) {
   
   const classes = useStyles();
   const forecasts = props.data
-
+  const d = 6
   return (
     <div className={classes.root}>
-       {forecasts.map(forecast => {
+       {/* {forecasts.map(forecast => {
        let city = forecast.city || {}
-       return (
-         <div key={city.name}>
-          <Grid container spacing={3}>
-            <Grid item xs> 
-                <SimpleTable data={forecast} />
-            </Grid>
-            <Grid item xs>
-              <Paper className={classes.paper}>xs</Paper>
-            </Grid>
-          </Grid>
-        </div>
-          )
-       })}
+       return ( */}
+      <Grid container spacing={3}>
+        <Grid item xs> 
+            <SimpleTable data={forecasts}  days={d} />
+        </Grid>
+        <Grid item xs>
+          <Paper className={classes.paper}>xs</Paper>
+        </Grid>
+      </Grid>
     </div>
   );
 }

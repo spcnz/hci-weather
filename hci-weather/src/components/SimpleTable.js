@@ -111,12 +111,12 @@ const styles = theme => ({
 let id = 0;
 
 function SimpleTable(props) {
-  const { classes, data } = props;
-  console.log('props su',data)
+  const { classes, data, days } = props;
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(2);
-  const list = data.list || []
-  const name = data.city? data.city.name + ', ' + data.city.country: ''
+  const [rowsPerPage, setRowsPerPage] = React.useState(days || 1);
+
+  const list = data[page] ? data[page].list: []
+  const name = data[page] ? data[page].city.name + ', ' + data[page].city.country: ''
   let rows = []
   let prevDate = ''
 
@@ -140,7 +140,6 @@ function SimpleTable(props) {
   list.forEach((el, index) => {  
     if (el) {
       let currDate = el.dt_txt.split(' ')[0]
-      console.log(el)
       if (currDate !== prevDate) {
         prevDate = currDate
         let hourly = []
@@ -154,7 +153,7 @@ function SimpleTable(props) {
       }
     }
   
-})
+  })
 
   return (
     <Paper className={classes.root} elevation={3}>
@@ -179,8 +178,7 @@ function SimpleTable(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-          .map(row => (
+          {rows.map(row => (
             <ExpandingRow row={row} key={row.id}/>
           ))}
         </TableBody>
@@ -189,7 +187,7 @@ function SimpleTable(props) {
         <TablePagination
           rowsPerPageOptions={[]}
           component="div"
-          count={rows.length}
+          count={data.length * rowsPerPage}
           rowsPerPage={rowsPerPage}
           page={page}
           onChangePage={handleChangePage}
@@ -203,7 +201,8 @@ function SimpleTable(props) {
 
 SimpleTable.propTypes = {
   classes: PropTypes.object.isRequired,
-  data: PropTypes.object.isRequired
+  data: PropTypes.array.isRequired,
+  days: PropTypes.number.isRequired
 };
 
 export default withStyles(styles)(SimpleTable);
