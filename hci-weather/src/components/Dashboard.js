@@ -44,13 +44,6 @@ export default function Dashboard(props) {
        return (
          <div key={city.name}>
           <Grid container spacing={3}>
-            <Grid item xs>
-              <Typography variant="h6" className={classes.title}>
-                Weather in {city.name + ', ' + city.country}
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid container spacing={3}>
             <Grid item xs> 
                 <SimpleTable data={forecast} />
             </Grid>

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import TablePagination from '@material-ui/core/TablePagination';
 import { withStyles } from "@material-ui/core/styles";
 import Collapse from "@material-ui/core/Collapse";
 import Table from "@material-ui/core/Table";
@@ -10,6 +11,9 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import TableContainer from '@material-ui/core/TableContainer';
 
 
 class ExpandingRow extends React.Component {
@@ -92,6 +96,15 @@ const styles = theme => ({
   tableHeaderCell : {
     fontWeight: 'bold',
     color: 'white'
+  },
+  title: {
+    flex: '1 1 100%',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    color: '#283593'
+  },
+  toolBar: {
+    heigh: '10px'
   }
 });
 
@@ -100,8 +113,12 @@ let id = 0;
 function SimpleTable(props) {
   const { classes, data } = props;
   console.log('props su',data)
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(2);
   const list = data.list || []
-
+  const name = data.city? data.city.name + ', ' + data.city.country: ''
+  let rows = []
+  let prevDate = ''
 
   function createData({dt_txt, main }, id, hourly) {
     const { temp: curr, temp_min: min, temp_max: max,pressure,humidity, feels_like: feelsLike } = main
@@ -110,13 +127,20 @@ function SimpleTable(props) {
     const time = dateTime[1].substring(0, dateTime[1].length - 3)
     return { id, date, time, curr, min, max, pressure, humidity, feelsLike, hourly }
   }
-  
-  let rows = []
-  let prevDate = ''
 
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+ 
   list.forEach((el, index) => {  
     if (el) {
       let currDate = el.dt_txt.split(' ')[0]
+      console.log(el)
       if (currDate !== prevDate) {
         prevDate = currDate
         let hourly = []
@@ -131,10 +155,15 @@ function SimpleTable(props) {
     }
   
 })
-console.log('redovi su',rows)
-console.log('renderuje se')
+
   return (
-    <Paper className={classes.root}>
+    <Paper className={classes.root} elevation={3}>
+      <Toolbar className={classes.toolBar}>
+        <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
+          {name}
+        </Typography>
+      </Toolbar>
+    <TableContainer>
       <Table className={classes.table}>
         <TableHead className={classes.tableHeader}>
           <TableRow>
@@ -150,11 +179,24 @@ console.log('renderuje se')
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => (
+          {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+          .map(row => (
             <ExpandingRow row={row} key={row.id}/>
           ))}
         </TableBody>
-      </Table>
+        </Table>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[]}
+          component="div"
+          count={rows.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onChangePage={handleChangePage}
+          onChangeRowsPerPage={handleChangeRowsPerPage}
+          nextIconButtonText="Next city"	
+          backIconButtonText="Previous city"
+        />
     </Paper>
   );
 }

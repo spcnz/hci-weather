@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.leavingScreen,
     }) ,
     height: '25%',
-    backgroundColor: '#E8E8E8',
+    backgroundColor: '#A9A9A9',
     position:'absolute'
   },
   appBarShift: {
@@ -160,7 +160,7 @@ export default function Home() {
             </IconButton>
             <div className={classes.textBox}>
             <Typography variant="h6" className={classes.headerTitle}>
-              Get weather forecast for five days
+              Weekly weather forecast
             </Typography>
             </div>
           </Toolbar>
