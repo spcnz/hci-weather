@@ -102,7 +102,6 @@ export default function Home() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const [data, setData] = React.useState([]);
-    let locations = []
 
     const handleDrawerOpen = () => {
       setOpen(true);
@@ -112,10 +111,9 @@ export default function Home() {
       setOpen(false);
     };
 
-    const setLocations = array => locations = array
-
-    const getForecast = async () => {
+    const getForecast = async locations  => {
       let responses = []
+      console.log(locations)
         for (let i=locations.length - 1; i >= 0; i--) {
           let cityName = locations[i].description.split(',')[0]
           cityName = cityName.includes(' ') ? cityName.replace(' ', '+') : cityName
@@ -128,10 +126,8 @@ export default function Home() {
     useEffect( ()=> {
       const  getForecast = async () => {
         try {
-          if (locations.length == 0) {
-            const response = await API.get(`?q=Novi+Sad&APPID=${config.API_KEY}&units=metric`)
-            setData([response.data])
-          }
+          const response = await API.get(`?q=Novi+Sad&APPID=${config.API_KEY}&units=metric`)
+          setData([response.data])
         } catch(error){
           console.log(error)
         }
@@ -172,7 +168,6 @@ export default function Home() {
         <SideBar 
           open={open}
           handleDrawerClose={handleDrawerClose}
-          setLocations={setLocations}
           getForecast={getForecast}
         />
         <main

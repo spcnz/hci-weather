@@ -62,7 +62,7 @@ export default function SideBar(props) {
           <Divider />
           <List>
             <ListItem children key="Location">
-              <MultipleSelection setLocations={props.setLocations}/>
+              <MultipleSelection getForecast={props.getForecast} />
             </ListItem>
           </List>
           <List>
@@ -77,7 +77,7 @@ export default function SideBar(props) {
                   variant="contained" 
                   color="primary"
                   size="large"
-                  onClick={() => props.getForecast()}
+                  onClick={() => props.getForecast([]) }
                   startIcon={<DoneIcon />}
                   style={{ 
                     position: 'relative',

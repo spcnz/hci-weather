@@ -42,7 +42,7 @@ export default function Dashboard(props) {
        {forecasts.map(forecast => {
        let city = forecast.city || {}
        return (
-         <div>
+         <div key={city.name}>
           <Grid container spacing={3}>
             <Grid item xs>
               <Typography variant="h6" className={classes.title}>
