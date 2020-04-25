@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import TablePagination from '@material-ui/core/TablePagination';
 import { withStyles } from "@material-ui/core/styles";
@@ -113,9 +113,14 @@ let id = 0;
 function SimpleTable(props) {
   const { classes, data, days } = props;
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(days + 1 || 1);
+  const [rowsPerPage, setRowsPerPage] = React.useState(props.days + 1 || 1);
 
-  console.log('rows perp',rowsPerPage)
+  useEffect(() => {
+    if (typeof props.days == 'number') {
+      setRowsPerPage(props.days + 1 )
+      setPage(0)
+    }
+  },[props.days]);
 
   const list = data[page] ? data[page].list: []
   const name = data[page] ? data[page].city.name + ', ' + data[page].city.country: ''

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
@@ -51,12 +51,15 @@ export default function SideBar(props) {
     const validInput = typeof days == 'number' && days >= 0 && days < 6;
     const errMsg = days < 0 ? 'Number of days must be positive' : days > 5 ? 'Get forecast for max 5 days in advance' : ''
     
-    if (validInput) 
-      props.setDays(days)
-      
     const handleInput = event => {
       setDays(parseInt(event.target.value));
     };
+
+    useEffect(() => {
+      if (validInput)
+        props.setDays(days)
+
+    }, [validInput])
 
     return (
         <Drawer

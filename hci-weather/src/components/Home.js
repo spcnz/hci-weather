@@ -102,12 +102,7 @@ export default function Home() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const [data, setData] = React.useState([]);
-    let days = 5
-
-    const setDays = dayNum => {
-      // days = dayNum
-      console.log('dani u home', days)
-    }
+    const [days, setDays] = React.useState(5)
 
     const handleDrawerOpen = () => {
       setOpen(true);
@@ -176,6 +171,7 @@ export default function Home() {
           handleDrawerClose={handleDrawerClose}
           getForecast={getForecast}
           setDays={setDays}
+          days={days}
         />
         <main
           className={clsx(classes.content, {
