@@ -43,7 +43,7 @@ export default function Dashboard(props) {
   
   const classes = useStyles();
   const forecasts = props.data
-  const d = 6
+
   return (
     <div className={classes.root}>
        <Grid container spacing={3}>
@@ -53,7 +53,7 @@ export default function Dashboard(props) {
       </Grid>
       <Grid container spacing={3}>
         <Grid item xs> 
-            <SimpleTable data={forecasts}  days={d} />
+            {forecasts.length > 0 && <SimpleTable data={forecasts}  days={props.days} />}
         </Grid>
         <Grid item xs>
           <Paper className={classes.paper}>xs</Paper>

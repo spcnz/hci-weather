@@ -115,6 +115,8 @@ function SimpleTable(props) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(days + 1 || 1);
 
+  console.log('rows perp',rowsPerPage)
+
   const list = data[page] ? data[page].list: []
   const name = data[page] ? data[page].city.name + ', ' + data[page].city.country: ''
   let rows = []
@@ -129,7 +131,7 @@ function SimpleTable(props) {
   }
 
   const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
+    typeof event == 'number' ? setRowsPerPage(event) : setRowsPerPage(parseInt(event.target.value, 10))
     setPage(0);
   };
 
@@ -140,7 +142,7 @@ function SimpleTable(props) {
   list.forEach((el, index) => {  
     if (el) {
       let currDate = el.dt_txt.split(' ')[0]
-      if (currDate !== prevDate) {
+      if (currDate !== prevDate && rows.length < rowsPerPage) {
         prevDate = currDate
         let hourly = []
         for (let i = index + 1; i < list.length ; i++) {

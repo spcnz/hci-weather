@@ -48,11 +48,14 @@ export default function SideBar(props) {
     const classes = useStyles();
     const theme = useTheme();
     const [days, setDays] = React.useState(5)
-    const validInput = days >= 0 && days < 6;
+    const validInput = typeof days == 'number' && days >= 0 && days < 6;
     const errMsg = days < 0 ? 'Number of days must be positive' : days > 5 ? 'Get forecast for max 5 days in advance' : ''
-
+    
+    if (validInput) 
+      props.setDays(days)
+      
     const handleInput = event => {
-      setDays(event.target.value);
+      setDays(parseInt(event.target.value));
     };
 
     return (
@@ -74,7 +77,9 @@ export default function SideBar(props) {
           <Divider />
           <List>
             <ListItem  key="locationLabel">
-              <Typography variant="h6" component="h2" className={classes.label}>Choose location</Typography>
+              <Typography variant="h6" component="h2" className={classes.label}>
+                Choose location
+              </Typography>
               </ListItem>
             <ListItem children key="location">
               <MultipleSelection getForecast={props.getForecast} />
@@ -82,7 +87,9 @@ export default function SideBar(props) {
           </List>
           <List>
             <ListItem  key="daysLabel">
-            <Typography variant="h6" component="h2" className={classes.label}>Insert number of days</Typography>
+            <Typography variant="h6" component="h2" className={classes.label}>
+              Insert number of days
+            </Typography>
             </ListItem>
             <ListItem key="days">
               <TextField
@@ -93,6 +100,7 @@ export default function SideBar(props) {
                 id="outlined-number"
                 label="Days"
                 type="number"
+                defaultValue="5"
                 InputLabelProps={{
                   shrink: true,
                 }}
