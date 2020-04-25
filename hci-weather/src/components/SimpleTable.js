@@ -113,7 +113,7 @@ let id = 0;
 function SimpleTable(props) {
   const { classes, data, days } = props;
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(days || 1);
+  const [rowsPerPage, setRowsPerPage] = React.useState(days + 1 || 1);
 
   const list = data[page] ? data[page].list: []
   const name = data[page] ? data[page].city.name + ', ' + data[page].city.country: ''

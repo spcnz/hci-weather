@@ -10,9 +10,9 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import Button from '@material-ui/core/Button';
 import DoneIcon from '@material-ui/icons/Done';
+import TextField from '@material-ui/core/TextField';
 
 import MultipleSelection from './MultipleSelection'
-import DatePicker from './DatePicker'
 
 const drawerWidth = 300;
 
@@ -38,10 +38,22 @@ const useStyles = makeStyles((theme) => ({
     textTransform: 'uppercase',
     color: '#283593'
   },
+  label: {
+    color: '#283593'
+  }
 }));
+
+
 export default function SideBar(props) {
     const classes = useStyles();
     const theme = useTheme();
+    const [days, setDays] = React.useState(5)
+    const validInput = days >= 0 && days < 6;
+    const errMsg = days < 0 ? 'Number of days must be positive' : days > 5 ? 'Get forecast for max 5 days in advance' : ''
+
+    const handleInput = event => {
+      setDays(event.target.value);
+    };
 
     return (
         <Drawer
@@ -54,41 +66,56 @@ export default function SideBar(props) {
           }}
         >
           <div className={classes.drawerHeader}>
-          <Typography variant="h6" component="h2" className={classes.textBox}>Location and date</Typography>
+          <Typography variant="h6" component="h2" className={classes.textBox}>Location and days</Typography>
             <IconButton onClick={props.handleDrawerClose} >
               {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
             </IconButton>
           </div>
           <Divider />
           <List>
-            <ListItem children key="Location">
+            <ListItem  key="locationLabel">
+              <Typography variant="h6" component="h2" className={classes.label}>Choose location</Typography>
+              </ListItem>
+            <ListItem children key="location">
               <MultipleSelection getForecast={props.getForecast} />
             </ListItem>
           </List>
           <List>
-              <ListItem button key="StartDate">
-                <DatePicker label="Select start date"/>
-              </ListItem>
-              <ListItem button key="EndDate">
-                <DatePicker label="Select end date"/>
-              </ListItem>
-              <ListItem>
-              <Button 
-                  variant="contained" 
-                  color="primary"
-                  size="large"
-                  onClick={() => props.getForecast([]) }
-                  startIcon={<DoneIcon />}
-                  style={{ 
-                    position: 'relative',
-                    top:20,
-                    right: 15,
-                    left: '30%'
-                    }}
-                  >
-                  Get forecast
-                </Button>
-                </ListItem>
+            <ListItem  key="daysLabel">
+            <Typography variant="h6" component="h2" className={classes.label}>Insert number of days</Typography>
+            </ListItem>
+            <ListItem key="days">
+              <TextField
+                fullWidth
+                error={!validInput}
+                onChange={e => handleInput(e)}
+                helperText={errMsg}
+                id="outlined-number"
+                label="Days"
+                type="number"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                variant="outlined"
+              />
+            </ListItem>
+            <ListItem>
+            <Button 
+                variant="contained" 
+                color="primary"
+                size="large"
+                onClick={() => props.getForecast([]) }
+                startIcon={<DoneIcon />}
+                style={{ 
+                  position: 'relative',
+                  top:20,
+                  right: 15,
+                  left: '30%'
+                  }}
+                >
+                Get forecast
+              </Button>
+            </ListItem>
           </List>   
         </Drawer>
     );

@@ -30,6 +30,13 @@ const useStyles = makeStyles((theme) => ({
     color: "#283593",
     marginTop: '40px'
   },
+  textBox: {
+    fontWeight: '700',
+    color: '#283593',
+    textAlign: 'center',
+    fontSize: '180%',
+    lineHeight: 1.6
+  },
 }));
 
 export default function Dashboard(props) {
@@ -39,9 +46,11 @@ export default function Dashboard(props) {
   const d = 6
   return (
     <div className={classes.root}>
-       {/* {forecasts.map(forecast => {
-       let city = forecast.city || {}
-       return ( */}
+       <Grid container spacing={3}>
+        <Grid item xs> 
+        <Typography variant="h6" component="h2" className={classes.textBox}>Check forecast for any location <br/>up to 5 days in advance</Typography>
+        </Grid>
+      </Grid>
       <Grid container spacing={3}>
         <Grid item xs> 
             <SimpleTable data={forecasts}  days={d} />

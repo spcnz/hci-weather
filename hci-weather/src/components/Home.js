@@ -132,7 +132,7 @@ export default function Home() {
           console.log(error)
         }
       }
-      getForecast()
+      //getForecast()
     }, [])
     return (
       <div className={classes.root}>
