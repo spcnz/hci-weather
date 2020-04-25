@@ -19,7 +19,7 @@ class ExpandingRow extends React.Component {
     const { row } = this.props;
     const { hourly } = row;
     const { open } = this.state;
-    console.log(row)
+
     return (
       <>
         <TableRow key={row.id}>
@@ -83,7 +83,7 @@ const styles = theme => ({
     overflowX: "auto"
   },
   table: {
-    minWidth: 400
+    minWidth: 400,
   },
   tableHeader: {
     backgroundColor: '#283593',

@@ -89,8 +89,7 @@ export default function SideBar(props) {
                   Get forecast
                 </Button>
                 </ListItem>
-          </List>
-          
+          </List>   
         </Drawer>
     );
   }

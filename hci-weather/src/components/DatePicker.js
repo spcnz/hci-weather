@@ -8,7 +8,7 @@ import {
 } from '@material-ui/pickers';
 
 export default function DatePicker(props) {
-  // The first commit of Material-UI
+
   const [selectedDate, setSelectedDate] = React.useState(new Date());
 
   const handleDateChange = (date) => {
