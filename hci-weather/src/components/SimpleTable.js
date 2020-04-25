@@ -111,7 +111,7 @@ const styles = theme => ({
 let id = 0;
 
 function SimpleTable(props) {
-  const { classes, data, days } = props;
+  const { classes, data } = props;
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(props.days + 1 || 1);
 
@@ -161,6 +161,8 @@ function SimpleTable(props) {
     }
   
   })
+
+  console.log("RENDER TABLE")
 
   return (
     <Paper className={classes.root} elevation={3}>

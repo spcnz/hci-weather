@@ -43,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+let locations = []
 
 export default function SideBar(props) {
     const classes = useStyles();
@@ -51,14 +52,26 @@ export default function SideBar(props) {
     const validInput = typeof days == 'number' && days >= 0 && days < 6;
     const errMsg = days < 0 ? 'Number of days must be positive' : days > 5 ? 'Get forecast for max 5 days in advance' : ''
     
+
+    console.log("RENDER SIDEBAR")
     const handleInput = event => {
       setDays(parseInt(event.target.value));
     };
 
+    const handleSubmit = () => {
+        if (locations.length > 0 && validInput)
+          props.getForecast(locations)
+    }
+
+    const setLocations = array => {
+      locations = array
+      if (validInput)
+        props.getForecast(locations)
+    }
+
     useEffect(() => {
       if (validInput)
         props.setDays(days)
-
     }, [validInput])
 
     return (
@@ -85,13 +98,13 @@ export default function SideBar(props) {
               </Typography>
               </ListItem>
             <ListItem children key="location">
-              <MultipleSelection getForecast={props.getForecast} />
+              <MultipleSelection getForecast={setLocations} />
             </ListItem>
           </List>
           <List>
             <ListItem  key="daysLabel">
             <Typography variant="h6" component="h2" className={classes.label}>
-              Insert number of days
+              Number of days in advance
             </Typography>
             </ListItem>
             <ListItem key="days">
@@ -115,7 +128,7 @@ export default function SideBar(props) {
                 variant="contained" 
                 color="primary"
                 size="large"
-                onClick={() => props.getForecast([]) }
+                onClick={() =>  handleSubmit()}
                 startIcon={<DoneIcon />}
                 style={{ 
                   position: 'relative',

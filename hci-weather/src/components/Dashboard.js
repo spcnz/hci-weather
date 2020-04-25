@@ -43,7 +43,7 @@ export default function Dashboard(props) {
   
   const classes = useStyles();
   const forecasts = props.data
-  console.log("RENDER DASHBOARD A DAYS JE ", props.days)
+  console.log("RENDER DASHBOARD ")
   return (
     <div className={classes.root}>
        <Grid container spacing={3}>

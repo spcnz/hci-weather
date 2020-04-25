@@ -108,6 +108,7 @@ export default function Home() {
       setOpen(true);
     };
   
+    console.log("RENDER HOME")
     const handleDrawerClose = () => {
       setOpen(false);
     };
