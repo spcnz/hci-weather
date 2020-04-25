@@ -8,8 +8,6 @@ import Typography from '@material-ui/core/Typography';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import DateRangeIcon from '@material-ui/icons/DateRange';
 import Button from '@material-ui/core/Button';
 import DoneIcon from '@material-ui/icons/Done';
 
@@ -38,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   textBox: {
     fontWeight: '300',
     textTransform: 'uppercase',
-    color: 'black'
+    color: '#283593'
   },
 }));
 export default function SideBar(props) {
