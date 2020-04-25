@@ -38,9 +38,9 @@ class ExpandingRow extends React.Component {
           <TableCell align="right">{row.humidity}</TableCell>
           <TableCell align="right">{row.feelsLike}</TableCell>
           <TableCell align="center"> 
-            <IconButton aria-label="delete" onClick={() => this.setState(({ open }) => ({ open: !open }))}>
+            {hourly.length > 0 && <IconButton aria-label="delete" onClick={() => this.setState(({ open }) => ({ open: !open }))}>
                 <ExpandMoreIcon />
-            </IconButton>
+            </IconButton> }
           </TableCell>
         </TableRow>
         {hourly.map(el => (
@@ -144,6 +144,7 @@ function SimpleTable(props) {
     setPage(newPage);
   };
  
+  console.log(rowsPerPage)
   list.forEach((el, index) => {  
     if (el) {
       let currDate = el.dt_txt.split(' ')[0]
@@ -162,7 +163,7 @@ function SimpleTable(props) {
   
   })
 
-  console.log("RENDER TABLE")
+  console.log("RENDER TABLE", rows)
 
   return (
     <Paper className={classes.root} elevation={3}>
