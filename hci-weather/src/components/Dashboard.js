@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
 import SimpleTable from './SimpleTable'
+import Graph from './Graph'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -46,17 +47,17 @@ export default function Dashboard(props) {
   console.log("RENDER DASHBOARD ")
   return (
     <div className={classes.root}>
-       <Grid container spacing={3}>
+       {/* <Grid container spacing={3}>
         <Grid item xs> 
         <Typography variant="h6" component="h2" className={classes.textBox}>Check forecast for any location <br/>up to 5 days in advance</Typography>
         </Grid>
-      </Grid>
-      <Grid container spacing={3}>
-        <Grid item xs> 
+      </Grid> */}
+      <Grid container spacing={2}>
+        <Grid item xs={6}> 
             {forecasts.length > 0 && <SimpleTable data={forecasts}  days={props.days} />}
         </Grid>
-        <Grid item xs>
-          <Paper className={classes.paper}>xs</Paper>
+        <Grid item xs={6}>
+            {forecasts.length > 0 && <Paper className={classes.paper}><Graph data={forecasts} days={props.days}/></Paper> }
         </Grid>
       </Grid>
     </div>

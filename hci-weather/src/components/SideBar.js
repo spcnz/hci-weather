@@ -14,7 +14,7 @@ import TextField from '@material-ui/core/TextField';
 
 import MultipleSelection from './MultipleSelection'
 
-const drawerWidth = 300;
+const drawerWidth = 220;
 
 const useStyles = makeStyles((theme) => ({
   
@@ -127,13 +127,13 @@ export default function SideBar(props) {
             <Button 
                 variant="contained" 
                 color="primary"
-                size="large"
+                size="medium"
                 onClick={() =>  handleSubmit()}
                 startIcon={<DoneIcon />}
                 style={{ 
                   position: 'relative',
                   top:20,
-                  right: 15,
+                  marginRight: '50px',
                   left: '30%'
                   }}
                 >

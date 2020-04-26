@@ -16,7 +16,7 @@ import API from '../api'
 import config from '../config'
 import image from "../assets/img/sky.jpg";
 
-const drawerWidth = 300;
+const drawerWidth = 220;
 const imageHeight = '150px'
 
 const useStyles = makeStyles((theme) => ({

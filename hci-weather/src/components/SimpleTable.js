@@ -27,17 +27,17 @@ class ExpandingRow extends React.Component {
     return (
       <>
         <TableRow key={row.id}>
-          <TableCell component="th" >
+          <TableCell component="th"  size="small" >
               {row.date}
           </TableCell>
-          <TableCell align="right" >{row.time}</TableCell>
-          <TableCell align="right">{row.curr}</TableCell>
-          <TableCell align="right">{row.min}</TableCell>
-          <TableCell align="right">{row.max}</TableCell>
-          <TableCell align="right">{row.pressure}</TableCell>
-          <TableCell align="right">{row.humidity}</TableCell>
-          <TableCell align="right">{row.feelsLike}</TableCell>
-          <TableCell align="center"> 
+          <TableCell  size="small" align="right" >{row.time}</TableCell>
+          <TableCell  size="small" align="right">{row.curr}</TableCell>
+          <TableCell  size="small" align="right">{row.min}</TableCell>
+          <TableCell  size="small" align="right">{row.max}</TableCell>
+          <TableCell  size="small" align="right">{row.pressure}</TableCell>
+          <TableCell  size="small" align="right">{row.humidity}</TableCell>
+          <TableCell  size="small" align="right">{row.feelsLike}</TableCell>
+          <TableCell  size="small" align="center"> 
             {hourly.length > 0 && <IconButton aria-label="delete" onClick={() => this.setState(({ open }) => ({ open: !open }))}>
                 <ExpandMoreIcon />
             </IconButton> }
@@ -45,31 +45,31 @@ class ExpandingRow extends React.Component {
         </TableRow>
         {hourly.map(el => (
             <TableRow key={el.time}>
-              <TableCell style={open? {padding: 10} : {padding: 0}} align="right">
+              <TableCell  size="small" style={open? {padding: 10} : {padding: 0}} align="right">
                 <Collapse in={open}></Collapse>
               </TableCell>
-              <TableCell style={open? {padding: 10} : {padding: 0}} align="right">
+              <TableCell  size="small" style={open? {padding: 10} : {padding: 0}} align="right">
                 <Collapse in={open}>{el.time}</Collapse>
               </TableCell>
-              <TableCell style={open? {padding: 10} : {padding: 0}} align="right">
+              <TableCell  size="small" style={open? {padding: 10} : {padding: 0}} align="right">
                 <Collapse in={open}>{el.curr}</Collapse>
               </TableCell>
-              <TableCell style={open? {padding: 10} : {padding: 0}} align="right">
+              <TableCell  size="small" style={open? {padding: 10} : {padding: 0}} align="right">
                 <Collapse in={open}>{el.min}</Collapse>
               </TableCell>
-              <TableCell style={open? {padding: 10} : {padding: 0}} align="right">
+              <TableCell  size="small" style={open? {padding: 10} : {padding: 0}} align="right">
                 <Collapse in={open}>{el.max}</Collapse>
               </TableCell>
-              <TableCell style={open? {padding: 10} : {padding: 0}} align="right">
+              <TableCell  size="small" style={open? {padding: 10} : {padding: 0}} align="right">
                 <Collapse in={open}>{el.pressure}</Collapse>
               </TableCell>
-              <TableCell style={open? {padding: 10} : {padding: 0}} align="right">
+              <TableCell  size="small" style={open? {padding: 10} : {padding: 0}} align="right">
                 <Collapse in={open}>{el.humidity}</Collapse>
               </TableCell>
-              <TableCell style={open? {padding: 10} : {padding: 0}} align="right">
+              <TableCell  size="small" style={open? {padding: 10} : {padding: 0}} align="right">
                 <Collapse in={open}>{el.feelsLike}</Collapse>
               </TableCell>
-              <TableCell style={open? {padding: 10} : {padding: 0}} align="right">
+              <TableCell  size="small" style={open? {padding: 10} : {padding: 0}} align="right">
                 <Collapse in={open}></Collapse>
               </TableCell>
             </TableRow>
@@ -84,18 +84,20 @@ const styles = theme => ({
   root: {
     width: "100%",
     marginTop: theme.spacing(3),
-    overflowX: "auto"
+    overflowX: "auto",
+    overflowY: "auto",
+    maxHeight: '550px'
   },
   table: {
-    minWidth: 400,
+    maxHeight: '200px'
   },
   tableHeader: {
     backgroundColor: '#283593',
     height: '10px'
   },
   tableHeaderCell : {
-    fontWeight: 'bold',
-    color: 'white'
+    color: 'white',
+    maxWidth: '6px'
   },
   title: {
     flex: '1 1 100%',
@@ -104,7 +106,7 @@ const styles = theme => ({
     color: '#283593'
   },
   toolBar: {
-    heigh: '10px'
+    heigh: '6px'
   }
 });
 
@@ -173,18 +175,18 @@ function SimpleTable(props) {
         </Typography>
       </Toolbar>
     <TableContainer>
-      <Table className={classes.table}>
+      <Table className={classes.table} size="small">
         <TableHead className={classes.tableHeader}>
           <TableRow>
-            <TableCell align="center" className= {classes.tableHeaderCell}>Date</TableCell>
-            <TableCell align="right" className= {classes.tableHeaderCell}>Time</TableCell>
-            <TableCell align="right" className= {classes.tableHeaderCell}>Current temp (C)</TableCell>
-            <TableCell align="right" className= {classes.tableHeaderCell}>Min temp (C)</TableCell>
-            <TableCell align="right" className= {classes.tableHeaderCell}>Max temp (C)</TableCell>
-            <TableCell align="right" className= {classes.tableHeaderCell}>Pressure (hpa)</TableCell>
-            <TableCell align="right" className= {classes.tableHeaderCell}>Humidity (%)</TableCell>
-            <TableCell align="right" className= {classes.tableHeaderCell}>Feels like (C)</TableCell>
-            <TableCell align="left" className= {classes.tableHeaderCell}>Hourly forecast</TableCell>
+            <TableCell size="small" align="center" className= {classes.tableHeaderCell}>Date</TableCell>
+            <TableCell  size="small"  align="right" className= {classes.tableHeaderCell}>Time</TableCell>
+            <TableCell  size="small"  align="right" className= {classes.tableHeaderCell}>Current temp (C)</TableCell>
+            <TableCell  size="small"  align="right" className= {classes.tableHeaderCell}>Min temp (C)</TableCell>
+            <TableCell  size="small"  align="right" className= {classes.tableHeaderCell}>Max temp (C)</TableCell>
+            <TableCell  size="small"  align="right" className= {classes.tableHeaderCell}>Pressure (hpa)</TableCell>
+            <TableCell  size="small"  align="right" className= {classes.tableHeaderCell}>Humidity (%)</TableCell>
+            <TableCell  size="small"  align="right" className= {classes.tableHeaderCell}>Feels like (C)</TableCell>
+            <TableCell  size="small" align="left" className= {classes.tableHeaderCell}>Hourly forecast</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
