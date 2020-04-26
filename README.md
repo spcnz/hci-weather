@@ -7,3 +7,5 @@ Za pokretanje aplikacije potrebno je imati instaliran npm (verzija koja je koris
 Nakon kloniranja repozitorijuma potrebno je pozicionirati se na root file hci-weather/hci-weathe i izvrsiti komandu nmp install.
 
 Nakon toga aplikacija se pokrece komandom npm start
+
+Detaljniji read me nalazi se unutar foldera hci-weathe
