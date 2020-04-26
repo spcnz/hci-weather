@@ -1,67 +1,45 @@
 import React from 'react'
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Label } from 'recharts';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
 
 
-function CustomTooltip({ payload, label, active }) {
-  console.log(payload)
-  if (active) {
-    return (
-      <div className="custom-tooltip">
-        <p className="label">{`Time ${label} : ${labels[property]} ${payload[0].value}`}</p>
-        <p className="intro">{`Date: ${payload[0].payload.date}`}</p>
-      </div>
-    );
+
+const useStyles = makeStyles((theme) => ({
+  button: {
+    fontWeight: '600',
+    '&:hover': {
+      backgroundColor: '#ABC0ED',
+      borderColor: '#0062cc',
+      boxShadow: 'none',
+    }
+  },
+  buttonsBox: {
+    textAlign: 'center',
   }
-
-  return null;
-}
+}));
 
 
-const property = 'feels_like'
 
-function createData ({dt_txt, main}, city, index) {
-  let  object = {}
-  const dateTime = dt_txt.split(' ')
-  const date = dateTime[0]
-  const time = dateTime[1].substring(0, dateTime[1].length - 3)
-  object[property + index] = main[property]
-  object['city' + index] = city
 
-  return {time, date, ...object}
-}
-
-function getName({city}) {
-  let cityName = city.name + ', ' + city.country
-  cityName = cityName.replace(', undefined', '')
-  return cityName
-}
-
-function getRandomColor() {
-  var letters = '0123456789ABCDEF';
-  var color = '#';
-  for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-}
 
 const colors = ['#283593', '#ff0000', '#000000', '#ffbf00', '#00ff40', '#7e00ff', '#ffff00']
 const labels = {pressure: 'Pressure hpa', temp: 'Temperature °C', feels_like: 'Feels like °C', humidity: 'Humidity %'}
 
-export default  function renderLineChart(props) {
+export default  function Graph(props) {
+  const classes = useStyles()
+  const [property, setProperty] = React.useState('temp')
 
   const { data, days } = props
+  
   let chartData = []
   let dataMin = Number.MAX_VALUE
   let dataMax = Number.MIN_VALUE
 
   data.forEach(((forecast, index) => {
-    
     let countDays = -1
     let prevDate = ''
-    console.log("FORECAST ", forecast)
     const city = getName(forecast)
-
     forecast.list.forEach(item => {
       const elData = createData(item, city, index)
 
@@ -83,7 +61,59 @@ export default  function renderLineChart(props) {
     })
   }))
 
+  function createData ({dt_txt, main}, city, index) {
+    let  object = {}
+    const dateTime = dt_txt.split(' ')
+    const date = dateTime[0]
+    const time = dateTime[1].substring(0, dateTime[1].length - 3)
+    object[property + index] = main[property]
+    object['city' + index] = city
+  
+    return {time, date, ...object}
+  }
+  
+  function getName({city}) {
+    let cityName = city.name + ', ' + city.country
+    cityName = cityName.replace(', undefined', '')
+    return cityName
+  }
+  
+  function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
+  function CustomTooltip({ payload, label, active }) {
+    console.log(payload)
+    if (active) {
+      return (
+        <div className="custom-tooltip">
+          <p className="label">{`Time ${label} : ${labels[property]} ${payload[0].value}`}</p>
+          <p className="intro">{`Date: ${payload[0].payload.date}`}</p>
+        </div>
+      );
+    }
+  
+    return null;
+  }
+
+  const handleClick = event => {
+    setProperty(event.currentTarget.value)
+  }
+
   return (
+    <div>
+    <div className={classes.buttonsBox}>
+            <Button color="primary" className={classes.button} onClick={handleClick} value="temp">Temperature</Button>
+            <Button color="primary" className={classes.button} onClick={handleClick} value="pressure">Pressure</Button>
+            <Button color="primary" className={classes.button} onClick={handleClick} value="humidity">Humidity</Button>
+            <Button color="primary" className={classes.button} onClick={handleClick} value="feels_like">Feels like</Button>
+          </div>
+
     <LineChart width={600} height={500} data={chartData} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
     { data.map((forecast, index) => {
         const color = index >= colors.length? getRandomColor() : colors[index]
@@ -121,5 +151,5 @@ export default  function renderLineChart(props) {
     </YAxis>
     <Tooltip content={<CustomTooltip />} wrapperStyle={{ width: 100, backgroundColor: '#ccc' }} />
   </LineChart>
-  
+  </div>
 )}

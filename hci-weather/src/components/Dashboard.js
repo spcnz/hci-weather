@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 
 import SimpleTable from './SimpleTable'
 import Graph from './Graph'
@@ -40,9 +41,22 @@ const useStyles = makeStyles((theme) => ({
     color: '#283593',
     textAlign: 'center',
     fontSize: '180%',
-    lineHeight: 1.6
+    lineHeight: 1.6,
+    
   },
+  button: {
+    fontWeight: '600',
+    '&:hover': {
+      backgroundColor: '#ABC0ED',
+      borderColor: '#0062cc',
+      boxShadow: 'none',
+    }
+  },
+  buttonsBox: {
+    textAlign: 'center'
+  }
 }));
+
 
 export default function Dashboard(props) {
   
@@ -51,11 +65,14 @@ export default function Dashboard(props) {
   console.log("RENDER DASHBOARD ")
   return (
     <div className={classes.root}>
-       {/* <Grid container spacing={3}>
-        <Grid item xs> 
-        <Typography variant="h6" component="h2" className={classes.textBox}>Check forecast for any location <br/>up to 5 days in advance</Typography>
+       <Grid container spacing={3}>
+        <Grid item xs={6}> 
+          <Typography variant="h6" component="h2" className={classes.textBox}></Typography>
         </Grid>
-      </Grid> */}
+        <Grid item xs={6}> 
+          <Typography variant="h6" component="h2" className={classes.textBox}>Chart weather and forecasts</Typography>
+        </Grid>
+      </Grid>
       <Grid container spacing={2}>
         <Grid item xs={6}> 
             {forecasts.length > 0 && <SimpleTable data={forecasts}  days={props.days} />}
