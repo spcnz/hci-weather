@@ -96,7 +96,7 @@ export default function MultipleSelection(props) {
       options={options}
       autoComplete
       includeInputInList
-      onChange={(event,value) => props.getForecast(value) }
+      onChange={(event,value) => { props.getForecast(value) }}
       renderInput={(params) => (
         <TextField
           id="input-with-icon-textfield"

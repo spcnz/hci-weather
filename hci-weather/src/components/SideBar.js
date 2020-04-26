@@ -11,6 +11,7 @@ import ListItem from '@material-ui/core/ListItem';
 import Button from '@material-ui/core/Button';
 import DoneIcon from '@material-ui/icons/Done';
 import TextField from '@material-ui/core/TextField';
+import { Alert, AlertTitle } from '@material-ui/lab';
 
 import MultipleSelection from './MultipleSelection'
 
@@ -98,8 +99,15 @@ export default function SideBar(props) {
               </Typography>
               </ListItem>
             <ListItem children key="location">
-              <MultipleSelection getForecast={setLocations} />
+              <MultipleSelection getForecast={setLocations}/>
             </ListItem>
+            {props.error.error && <ListItem children key="locationErro">
+              <Alert severity="error">
+                <AlertTitle>Error</AlertTitle>
+                 Data for chosen city {props.error.city} doesn't exists <strong>Remove it from selection!</strong>
+              </Alert>
+            </ListItem>
+            }
           </List>
           <List>
             <ListItem  key="daysLabel">

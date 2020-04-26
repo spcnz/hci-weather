@@ -125,7 +125,8 @@ function SimpleTable(props) {
   },[props.days]);
 
   const list = data[page] ? data[page].list: []
-  const name = data[page] ? data[page].city.name + ', ' + data[page].city.country: ''
+  let name = data[page] ? data[page].city.name + ', ' + data[page].city.country: ''
+  name = name.includes(', undefined') ? name.replace(', undefined', '') : name
   let rows = []
   let prevDate = ''
 
@@ -146,7 +147,6 @@ function SimpleTable(props) {
     setPage(newPage);
   };
  
-  console.log(rowsPerPage)
   list.forEach((el, index) => {  
     if (el) {
       let currDate = el.dt_txt.split(' ')[0]
@@ -165,7 +165,6 @@ function SimpleTable(props) {
   
   })
 
-  console.log("RENDER TABLE", rows)
 
   return (
     <Paper className={classes.root} elevation={3}>

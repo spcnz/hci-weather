@@ -103,6 +103,7 @@ export default function Home() {
     const [open, setOpen] = React.useState(false);
     const [data, setData] = React.useState([]);
     const [days, setDays] = React.useState(5)
+    const [error, setError] = React.useState({error: false, city:''})
 
     const handleDrawerOpen = () => {
       setOpen(true);
@@ -115,12 +116,18 @@ export default function Home() {
 
     const getForecast = async locations  => {
       let responses = []
+      setError({error: false, city:''})
       console.log(locations)
         for (let i=locations.length - 1; i >= 0; i--) {
           let cityName = locations[i].description.split(',')[0]
           cityName = cityName.includes(' ') ? cityName.replace(' ', '+') : cityName
-          let { data } = await API.get(`?q=${cityName}&APPID=${config.API_KEY}&units=metric`)
-          responses.push(data)
+          try {
+            let { data } = await API.get(`?q=${cityName}&APPID=${config.API_KEY}&units=metric`)
+            responses.push(data)
+          } catch(error) {
+            console.log(error)
+            setError({error: true, city: cityName.replace('+',' ')})
+          }
         }
         setData(responses)
     }
@@ -136,6 +143,8 @@ export default function Home() {
       }
       getForecast()
     }, [])
+
+
     return (
       <div className={classes.root}>
       <Helmet>
@@ -146,8 +155,7 @@ export default function Home() {
             position="fixed"
             className={clsx(classes.appBar, {
                 [classes.appBarShift]: open,
-                }, classes.header)}
-            
+                }, classes.header)} 
         >
           <Toolbar variant="dense">
             <IconButton
@@ -173,6 +181,7 @@ export default function Home() {
           getForecast={getForecast}
           setDays={setDays}
           days={days}
+          error={error}
         />
         <main
           className={clsx(classes.content, {
