@@ -55,7 +55,7 @@ export default function MultipleSelection(props) {
     () =>
       throttle((request, callback) => {
         autocompleteService.current.getPlacePredictions(request, callback);
-      }, 400),
+      }, 300),
     [],
   );
 
