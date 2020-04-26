@@ -70,7 +70,7 @@ export default function Dashboard(props) {
           <Typography variant="h6" component="h2" className={classes.textBox}></Typography>
         </Grid>
         <Grid item xs={6}> 
-          <Typography variant="h6" component="h2" className={classes.textBox}>Chart weather and forecasts</Typography>
+  {forecasts.length > 0 && <Typography variant="h6" component="h2" className={classes.textBox}>Chart weather and forecasts</Typography> }
         </Grid>
       </Grid>
       <Grid container spacing={2}>

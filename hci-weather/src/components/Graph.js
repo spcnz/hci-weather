@@ -88,12 +88,15 @@ export default  function Graph(props) {
   }
 
   function CustomTooltip({ payload, label, active }) {
-    console.log(payload)
+
     if (active) {
       return (
         <div className="custom-tooltip">
-          <p className="label">{`Time ${label} : ${labels[property]} ${payload[0].value}`}</p>
-          <p className="intro">{`Date: ${payload[0].payload.date}`}</p>
+          <p className="label">{`Time ${label}`} <br/> {`${payload[0].payload.date}`} </p>
+          <p className="label">{`${labels[property]}`} </p>
+          {payload.map((el)=> (
+            <p className="intro"> {`${el.name} : ${el.value}`} </p>
+          ))}
         </div>
       );
     }
