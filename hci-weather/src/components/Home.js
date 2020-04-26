@@ -109,8 +109,7 @@ export default function Home() {
     const handleDrawerOpen = () => {
       setOpen(true);
     };
-  
-    console.log("RENDER HOME")
+
     const handleDrawerClose = () => {
       setOpen(false);
     };
@@ -118,7 +117,6 @@ export default function Home() {
     const getForecast = async locations  => {
       let responses = []
       setError({error: false, city:''})
-      console.log(locations)
         for (let i=locations.length - 1; i >= 0; i--) {
           let cityName = locations[i].description.split(',')[0]
           cityName = cityName.includes(' ') ? cityName.replace(' ', '+') : cityName
