@@ -45,31 +45,31 @@ class ExpandingRow extends React.Component {
         </TableRow>
         {hourly.map(el => (
             <TableRow key={el.time}>
-              <TableCell  size="small" style={open? {padding: 10} : {padding: 0}} align="right">
+              <TableCell  size="small" style={open? {padding: 10} : {padding: 0}} align="center">
                 <Collapse in={open}></Collapse>
               </TableCell>
-              <TableCell  size="small" style={open? {padding: 10} : {padding: 0}} align="right">
+              <TableCell  size="small" style={open? {padding: 10} : {padding: 0}} align="center">
                 <Collapse in={open}>{el.time}</Collapse>
               </TableCell>
-              <TableCell  size="small" style={open? {padding: 10} : {padding: 0}} align="right">
+              <TableCell  size="small" style={open? {padding: 10} : {padding: 0}} align="center">
                 <Collapse in={open}>{el.curr}</Collapse>
               </TableCell>
-              <TableCell  size="small" style={open? {padding: 10} : {padding: 0}} align="right">
+              <TableCell  size="small" style={open? {padding: 10} : {padding: 0}} align="center">
                 <Collapse in={open}>{el.min}</Collapse>
               </TableCell>
-              <TableCell  size="small" style={open? {padding: 10} : {padding: 0}} align="right">
+              <TableCell  size="small" style={open? {padding: 10} : {padding: 0}} align="center">
                 <Collapse in={open}>{el.max}</Collapse>
               </TableCell>
-              <TableCell  size="small" style={open? {padding: 10} : {padding: 0}} align="right">
+              <TableCell  size="small" style={open? {padding: 10} : {padding: 0}} align="center">
                 <Collapse in={open}>{el.pressure}</Collapse>
               </TableCell>
-              <TableCell  size="small" style={open? {padding: 10} : {padding: 0}} align="right">
+              <TableCell  size="small" style={open? {padding: 10} : {padding: 0}} align="center">
                 <Collapse in={open}>{el.humidity}</Collapse>
               </TableCell>
-              <TableCell  size="small" style={open? {padding: 10} : {padding: 0}} align="right">
+              <TableCell  size="small" style={open? {padding: 10} : {padding: 0}} align="center">
                 <Collapse in={open}>{el.feelsLike}</Collapse>
               </TableCell>
-              <TableCell  size="small" style={open? {padding: 10} : {padding: 0}} align="right">
+              <TableCell  size="small" style={open? {padding: 10} : {padding: 0}} align="center">
                 <Collapse in={open}></Collapse>
               </TableCell>
             </TableRow>
@@ -86,7 +86,7 @@ const styles = theme => ({
     marginTop: theme.spacing(3),
     overflowX: "auto",
     overflowY: "auto",
-    maxHeight: '550px'
+    maxHeight: '570px'
   },
   table: {
     maxHeight: '200px'

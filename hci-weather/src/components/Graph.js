@@ -1,5 +1,5 @@
 import React from 'react'
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Label } from 'recharts';
 const data = [{name: 'Page A', uv: 400, pv: 2400, amt: 2400}, {name: 'Page B', uv: 200, pv: 2400, amt: 2400},
 
 {name: 'Page C', uv: 900, pv: 2400, amt: 2400}];
@@ -68,8 +68,18 @@ export default  function renderLineChart(props) {
   <LineChart width={600} height={500} data={dataN} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
     <Line type="monotone" dataKey="pressure" stroke="#283593" />
     <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-    <XAxis dataKey="time" />
-    <YAxis type="number" domain={[dataMin - 5, dataMax + 5]}/>
+    <XAxis dataKey="time" dy={5}>
+    <Label
+      value='Measurement time'
+      position="insideBottomRight"
+      margintTop={100}
+      fontSize={18}
+      fill='#283593'
+      align='right'
+        />
+    </XAxis>
+    <Legend align="center" />
+    <YAxis dx={-5} type="number" domain={[dataMin - 5, dataMax + 5]}/>
     <Tooltip content={<CustomTooltip />} wrapperStyle={{ width: 100, backgroundColor: '#ccc' }} />
   </LineChart>
   
