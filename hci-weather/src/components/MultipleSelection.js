@@ -89,7 +89,8 @@ export default function MultipleSelection(props) {
     <Autocomplete
       multiple
       id="google-map-demo"
-      style={{ width: 300 }}
+      
+      style={{ width: '100%' }}
       getOptionLabel={(option) => (typeof option === 'string' ? option : option.description)}
       filterOptions={(x) => x}
       options={options}

@@ -83,7 +83,7 @@ class ExpandingRow extends React.Component {
 const styles = theme => ({
   root: {
     width: "100%",
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(2),
     overflowX: "auto",
     overflowY: "auto",
     maxHeight: '570px'

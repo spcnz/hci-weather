@@ -16,6 +16,10 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.secondary,
+    marginTop: theme.spacing(2),
+    minHeight: '560px',
+    overflowX: "auto",
+    overflowY: "auto",
   },
   title: {
     textAlign: 'center',
@@ -57,7 +61,7 @@ export default function Dashboard(props) {
             {forecasts.length > 0 && <SimpleTable data={forecasts}  days={props.days} />}
         </Grid>
         <Grid item xs={6}>
-            {forecasts.length > 0 && <Paper className={classes.paper}><Graph data={forecasts} days={props.days}/></Paper> }
+            {forecasts.length > 0 && <Paper elevation={3} className={classes.paper}><Graph data={forecasts} days={props.days}/></Paper> }
         </Grid>
       </Grid>
     </div>

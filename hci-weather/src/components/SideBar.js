@@ -133,8 +133,8 @@ export default function SideBar(props) {
                 style={{ 
                   position: 'relative',
                   top:20,
-                  marginRight: '50px',
-                  left: '30%'
+                  right: '20%',
+                  left: '20%'
                   }}
                 >
                 Get forecast
