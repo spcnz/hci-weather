@@ -180,12 +180,12 @@ function SimpleTable(props) {
           <TableRow>
             <TableCell size="small" align="center" className= {classes.tableHeaderCell}>Date</TableCell>
             <TableCell  size="small"  align="right" className= {classes.tableHeaderCell}>Time</TableCell>
-            <TableCell  size="small"  align="right" className= {classes.tableHeaderCell}>Current temp (C)</TableCell>
-            <TableCell  size="small"  align="right" className= {classes.tableHeaderCell}>Min temp (C)</TableCell>
-            <TableCell  size="small"  align="right" className= {classes.tableHeaderCell}>Max temp (C)</TableCell>
+            <TableCell  size="small"  align="right" className= {classes.tableHeaderCell}>Current temp (°C)</TableCell>
+            <TableCell  size="small"  align="right" className= {classes.tableHeaderCell}>Min temp (°C)</TableCell>
+            <TableCell  size="small"  align="right" className= {classes.tableHeaderCell}>Max temp (°C)</TableCell>
             <TableCell  size="small"  align="right" className= {classes.tableHeaderCell}>Pressure (hpa)</TableCell>
             <TableCell  size="small"  align="right" className= {classes.tableHeaderCell}>Humidity (%)</TableCell>
-            <TableCell  size="small"  align="right" className= {classes.tableHeaderCell}>Feels like (C)</TableCell>
+            <TableCell  size="small"  align="right" className= {classes.tableHeaderCell}>Feels like (°C)</TableCell>
             <TableCell  size="small" align="left" className= {classes.tableHeaderCell}>Hourly forecast</TableCell>
           </TableRow>
         </TableHead>
